@@ -1,0 +1,57 @@
+service: marketing-backend
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    DB_HOST: localhost
+    DB_USER: root
+    DB_PASSWORD: 
+    DB_NAME: marketing_campaigns
+plugins:
+  - serverless-offline
+
+functions:
+  createCampaign:
+    handler: handlers/campaigns.createCampaign
+    events:
+      - http:
+          path: campaigns
+          method: post
+          cors: true
+  sendCampaign:
+    handler: handlers/campaigns.sendCampaign
+    events:
+      - http:
+          path: campaigns/{id}/send
+          method: post
+          cors: true
+  listCampaigns:
+    handler: handlers/campaigns.listCampaigns
+    events:
+      - http:
+          path: campaigns
+          method: get
+          cors: true
+          request:
+            parameters:
+              querystrings:
+                start: true
+                end: true
+  getCampaignMessages:
+    handler: handlers/campaigns.getCampaignMessages
+    events:
+      - http:
+          path: campaigns/{id}/messages
+          method: get
+          cors: true
+  getUsers:
+    handler: handlers/options/users.getUsers
+    events:
+      - http:
+          path: options/users
+          method: get
+          cors: true

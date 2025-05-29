@@ -1,0 +1,49 @@
+<h2 class="mb-4">Mensajes de Campaña ID: {{ campaignId }}</h2>
+
+<button class="btn btn-secondary mb-3" (click)="goBack()">
+  <i class="bi bi-arrow-left-circle me-1"></i> Volver a Campañas
+</button>
+
+<div class="table-responsive mt-4" *ngIf="messages.length > 0; else noMessages">
+  <table class="table table-hover table-striped align-middle table-bordered rounded-3 custom-bordered-table">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Mensaje</th>
+        <th class="text-center" scope="col">Estado de Envío</th>
+        <th class="text-center" scope="col">Fecha</th>
+        <th class="text-center" scope="col">Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let msg of messages">
+        <td>{{ msg.id }}</td>
+        <td>{{ msg.phone }}</td>
+        <td>{{ msg.text }}</td>
+        <td class="text-center">
+          <span class="badge px-3 py-2 fs-6"
+            [ngClass]="{
+              'bg-warning text-dark': msg.shipping_status === 1,
+              'bg-success': msg.shipping_status === 2,
+              'bg-danger': msg.shipping_status === 3
+            }">
+            {{
+              msg.shipping_status === 1 ? 'Pendiente' :
+              msg.shipping_status === 2 ? 'Enviado' :
+              msg.shipping_status === 3 ? 'Error' : 'Desconocido'
+            }}
+          </span>
+        </td>
+        <td class="text-center">{{ msg.fullDateTime | date: 'dd/MM/yyyy' }}</td>
+        <td class="text-center">{{ msg.fullDateTime | date: 'hh:mm a' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noMessages>
+  <p class="text-info fw-semibold">No hay mensajes para mostrar en esta campaña.</p>
+</ng-template>
+
+<p *ngIf="error && messages.length > 0" class="text-danger fw-bold">{{ error }}</p>

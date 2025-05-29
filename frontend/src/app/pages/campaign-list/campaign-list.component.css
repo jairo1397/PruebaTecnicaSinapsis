@@ -1,0 +1,10 @@
+.custom-bordered-table {
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border: 1px solid #dee2e6;
+  overflow: hidden;
+}
+.custom-bordered-table th,
+.custom-bordered-table td {
+  border: 1px solid #dee2e6;
+}

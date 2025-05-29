@@ -1,0 +1,42 @@
+<div *ngIf="isLoading" class="fullscreen-loader">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-3 fw-bold text-uppercase" href="#">
+      📢 Marketing Campaigns
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto d-flex align-items-center gap-2">
+        <li class="nav-item">
+          <a routerLink="/campaigns" class="btn btn-outline-light" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            Listar Campañas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/campaigns/new" class="btn btn-warning text-dark fw-bold">
+            Crear Campaña
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,103 @@
+<h2 class="mb-4">Listar Campañas</h2>
+
+<form (ngSubmit)="listCampaigns()" #dateForm="ngForm" class="row gy-4 mb-5"> <!-- gy para separación vertical -->
+
+  <div class="col-md-5">
+    <label for="start" class="form-label">Fecha Inicio:</label>
+    <input type="date" id="start" [(ngModel)]="start" name="start" required class="form-control" />
+  </div>
+
+  <div class="col-md-5">
+    <label for="end" class="form-label">Fecha Fin:</label>
+    <input type="date" id="end" [(ngModel)]="end" name="end" required class="form-control" />
+  </div>
+
+  <div class="col-md-2 d-flex align-items-end justify-content-start">
+    <button type="submit" [disabled]="!dateForm.form.valid" class="btn btn-primary w-100">
+      <i class="bi bi-search me-2"></i> Buscar
+    </button>
+  </div>
+
+</form>
+
+<div class="table-responsive mt-4">
+    <table *ngIf="campaigns.length > 0" class="table table-hover table-striped align-middle table-bordered rounded-3 custom-bordered-table">
+        <thead class="table-primary">
+            <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Teléfonos</th>
+            <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let campaign of campaigns">
+            <td>{{ campaign.id }}</td>
+            <td>{{ campaign.name }}</td>
+            <td class="text-center">{{ campaign.process_date | date: 'dd/MM/yyyy' }}</td>
+            <td class="text-center">
+                <span class="badge px-3 py-2 fs-6"
+                    [ngClass]="{
+                    'bg-warning text-dark': campaign.process_status === 1,
+                    'bg-primary': campaign.process_status === 2,
+                    'bg-success': campaign.process_status === 3
+                    }">
+                    {{
+                    campaign.process_status === 1 ? 'Pendiente' :
+                    campaign.process_status === 2 ? 'En Proceso' :
+                    campaign.process_status === 3 ? 'Finalizada' : 'Desconocido'
+                    }}
+                </span>
+            </td>
+            <td class="text-center">
+                <button
+                    class="btn btn-info btn-sm"
+                    (click)="openPhonesModal(campaign.phone_list)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#phonesModal"
+                >
+                    Ver Teléfonos
+                </button>
+            </td>
+            <td class="text-center">
+            <button (click)="viewMessages(campaign.id)" class="btn btn-secondary btn-sm me-2">
+                Ver Mensajes
+            </button>
+            <button
+                *ngIf="campaign.process_status == 1"
+                (click)="simulateSend(campaign.id)"
+                class="btn btn-warning btn-sm"
+            >
+                Simular Envío
+            </button>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p *ngIf="error" class="text-danger mt-3">{{ error }}</p>
+
+<!-- Modal -->
+<div class="modal fade" id="phonesModal" tabindex="-1" aria-labelledby="phonesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="phonesModalLabel">Teléfonos de la Campaña</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let phone of selectedPhones">
+            {{ phone }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

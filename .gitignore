@@ -1,0 +1,16 @@
+# Ignorar node_modules en todo el proyecto
+**/node_modules/
+
+# Ignorar builds
+**/dist/
+**/build/
+
+# Ignorar entornos
+.env
+.env.*
+
+# Ignorar carpetas temporales
+*.log
+.DS_Store
+.vscode/
+.idea/
