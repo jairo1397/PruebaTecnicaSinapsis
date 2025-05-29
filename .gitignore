@@ -14,3 +14,7 @@
 .DS_Store
 .vscode/
 .idea/
+
+# Ignorar archivos de configuración de IDEs
+**/temp/
+**/undefined*/

@@ -4,7 +4,7 @@
 ## Backend
 
 - Lenguaje: Node.js
-- Framework: Serverless Framework para AWS Lambda
+- Framework: Serverless Framework
 - Documentación API: `backend/openapi.yaml`
 - Plugin serverless-offline para pruebas locales
 
@@ -12,7 +12,7 @@
 
 ## Frontend
 
-- Framework: Angular (última versión)
+- Framework: Angular (v19)
 
 ---
 
@@ -24,9 +24,9 @@
 2. Instala dependencias con `npm install`
 3. Configura las variables y ajustando valores en utils/db.js
 4. Ejecuta localmente con `npx serverless offline`
-5. Para desplegar a AWS, ejecuta `serverless deploy`
-6. Para visualizar la documentacion Swagger de los endpoints ejecutar `node swagger.js`
+5. Para visualizar la documentacion Swagger de los endpoints ejecutar `node swagger.js`
 6. La documentación API está disponible en `http://localhost:3001/docs` cuando el backend está corriendo
+6. Si se quiere desplegar a AWS, ejecutar `serverless deploy`
 
 ### Frontend
 
