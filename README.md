@@ -47,4 +47,35 @@ Ejecuta este script en tu servidor MySQL antes de correr la aplicación.
 
 ---
 
-Gracias por la oportunidad de entregar este proyecto.
+## Cómo funciona el Backend
+
+El backend está desarrollado en Node.js usando Serverless Framework y permite la ejecución de los endpoints mediante la documentación Swagger para facilitar las pruebas.
+
+- La documentación de la API está disponible en `/docs` cuando el backend está corriendo localmente.
+- Al interactuar con los endpoints desde Swagger (dándole a "Try it out"), se completan automáticamente con datos de prueba para facilitar la simulación y prueba rápida.
+- Para correr localmente se utiliza el plugin `serverless-offline`, que simula el entorno AWS para pruebas.
+- El backend incluye lógica para simular el envío de mensajes con una probabilidad de éxito o fallo, lo que permite probar diferentes escenarios de estado en las campañas.
+
+---
+
+## Cómo funciona el Frontend
+
+El frontend está desarrollado con Angular (v19) y ofrece una interfaz para gestionar campañas de envío de mensajes.
+
+- En la parte superior derecha del sistema web hay dos botones principales:
+  - **Lista de Campañas:** Muestra todas las campañas existentes con su estado actual y botones para acciones específicas.
+  - **Crear Nueva Campaña:** Abre un formulario para crear una campaña nueva.
+
+### Creación de campaña
+
+- El formulario permite seleccionar un usuario (cargado desde la tabla `users`), asignar un nombre a la campaña y escribir un mensaje que será enviado a todos los números.
+- Luego, se puede agregar una lista de números telefónicos destino para el envío del mensaje.
+
+### Gestión y simulación
+
+- Una vez creada la campaña, esta aparece en la lista de campañas.
+- Desde ahí, puedes hacer clic en el botón **Simular Envío** para simular el envío de mensajes a los números registrados.
+- La simulación actualiza el estado de la campaña y genera registros individuales para cada número con el estado del mensaje (exitoso o fallido), simulando una probabilidad de éxito o error.
+- También se puede visualizar la lista de mensajes enviados, mostrando los números, mensajes y sus estados.
+
+---

@@ -42,14 +42,14 @@ CREATE TABLE messages (
     FOREIGN KEY (campaign_id) REFERENCES campaigns(id)
 );
 
--- Insertar datos de prueba en customers con nombres más reales
+-- Insertar datos de prueba en customers
 INSERT INTO customers (name, status) VALUES 
 ('Empresa Soluciones Globales', TRUE),
 ('InnovaTech Servicios', TRUE),
 ('Comercial López S.A.', FALSE),
 ('Distribuidora Norte', TRUE);
 
--- Insertar datos de prueba en users con nombres de usuarios más reales y variados
+-- Insertar datos de prueba en users con nombres de usuarios
 INSERT INTO users (customer_id, username, status) VALUES 
 (1, 'jose.martinez', TRUE),
 (1, 'laura.gomez', TRUE),
@@ -57,7 +57,6 @@ INSERT INTO users (customer_id, username, status) VALUES
 (3, 'maria.lopez', FALSE),
 (4, 'juan.perez', TRUE);
 
--- Suponiendo que los IDs de users generados son 1, 2, 3, 4, 5 respectivamente
 
 -- Insertar datos de prueba en campaigns
 INSERT INTO campaigns (user_id, name, process_date, process_hour, process_status, phone_list, message_text) VALUES
