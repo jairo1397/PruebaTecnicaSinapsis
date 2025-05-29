@@ -60,10 +60,42 @@ INSERT INTO users (customer_id, username, status) VALUES
 
 -- Insertar datos de prueba en campaigns
 INSERT INTO campaigns (user_id, name, process_date, process_hour, process_status, phone_list, message_text) VALUES
-(1, 'Campaña Verano 2025', '2025-06-01', '10:00:00', 1, '1234567890,0987654321,1122334455', 'Mensaje promocional verano 2025'),
-(2, 'Campaña Invierno 2025', '2025-12-01', '15:30:00', 2, '2233445566,6655443322', 'Mensaje promoción invierno'),
-(3, 'Campaña Primavera 2025', '2025-04-10', '14:00:00', 1, '3344556677,7788990011', 'Mensaje primavera 2025');
-(5, 'Campaña Otoño 2025', '2025-09-15', '09:00:00', 3, '4455667788,8877665544', 'Mensaje especial otoño');
+(
+    1,
+    'Campaña Verano 2025',
+    '2025-05-01',
+    '10:00:00',
+    1,
+    '1234567890,0987654321,1122334455',
+    'Mensaje promocional verano 2025'
+),
+(
+    2,
+    'Campaña Invierno 2025',
+    '2025-04-01',
+    '15:30:00',
+    1,
+    '2233445566,6655443322',
+    'Mensaje promoción invierno'
+),
+(
+    3,
+    'Campaña Primavera 2025',
+    '2025-05-10',
+    '14:00:00',
+    1,
+    '3344556677,7788990011',
+    'Mensaje primavera 2025'
+),
+(
+    5,
+    'Campaña Otoño 2025',
+    '2025-05-15',
+    '09:00:00',
+    1,
+    '4455667788,8877665544',
+    'Mensaje especial otoño'
+);
 
 
 

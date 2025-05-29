@@ -47,10 +47,24 @@ export class CampaignMessagesComponent implements OnInit {
       next: (res) => {
         // Mapear mensajes para agregar fecha en formato Date
         this.messages = res.map((msg: any) => {
+          // Convertir la fecha de proceso a un objeto Date
           const date = new Date(msg.process_date);
+
+          // Formatear la hora de proceso
+          const [hours, minutes, seconds] = msg.process_hour.split(':').map(Number);
+          const hourDate = new Date();
+          hourDate.setHours(hours, minutes, seconds);
+
+          const formattedHour = new Intl.DateTimeFormat('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+          }).format(hourDate);
           return {
             ...msg,
-            fullDateTime: date
+            fullDateTime: date,
+            formattedHour: formattedHour
           };
         });
 
